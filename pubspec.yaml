@@ -18,8 +18,14 @@ dependencies:
   # routing
   auto_route: ^7.8.4
 
+  #networking
+  http: ^0.13.5
+  equatable: ^2.0.5
+
   #core
   flutter_native_splash: ^2.3.4
+  flutter_svg: ^2.0.7
+  cached_network_image: ^3.3.0
 
 dev_dependencies:
   flutter_test:

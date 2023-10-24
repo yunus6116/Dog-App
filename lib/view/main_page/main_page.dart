@@ -1,7 +1,11 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:dog_app/core/plugins/system_info.dart';
 import 'package:dog_app/core/router/app_router.gr.dart';
+import 'package:dog_app/core/theme/colors.dart';
+import 'package:dog_app/view/main_page/settings_page/settings_page.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 @RoutePage()
 class MainPage extends StatefulWidget {
@@ -14,18 +18,21 @@ class MainPage extends StatefulWidget {
 class MainPageState extends State<MainPage> {
   @override
   Widget build(context) {
-    // builder will rebuild everytime this router's stack
-    // updates
-    // we need it to indicate which NavigationRailDestination is active
     return AutoTabsRouter(
-      routes: const [
-        HomeRoute(),
+      routes: [
+        const HomeRoute(),
         SettingsRoute(),
       ],
       builder: (context, child) {
         return Scaffold(
+          backgroundColor: Colors.white,
           appBar: AppBar(
-            title: Text(context.topRoute.title(context)),
+            elevation: 0,
+            backgroundColor: Colors.white,
+            title: Text(
+              context.topRoute.title(context),
+              style: const TextStyle(color: Colors.black),
+            ),
             leading: const AutoLeadingButton(ignorePagelessRoutes: true),
           ),
           body: child,
@@ -41,14 +48,32 @@ class MainPageState extends State<MainPage> {
         ? const SizedBox.shrink()
         : BottomNavigationBar(
             currentIndex: tabsRouter.activeIndex,
-            onTap: tabsRouter.setActiveIndex,
-            items: const [
+            selectedItemColor: MainColors.mainLightColor,
+            onTap: (int index) async {
+              if (index == 0) {
+                tabsRouter.setActiveIndex(index);
+              }
+              if (index == 1) {
+                String version = await SystemInfo.getOSVersion();
+                if (!mounted) return;
+                showModalBottomSheet(
+                  isScrollControlled: true,
+                  context: context,
+                  builder: (BuildContext context) {
+                    return SettingsPage(
+                      version: version,
+                    );
+                  },
+                );
+              }
+            },
+            items: [
               BottomNavigationBarItem(
-                icon: Icon(Icons.home),
+                icon: SvgPicture.asset("assets/svg_icons/home_icon.svg"),
                 label: 'Home',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.settings),
+                icon: SvgPicture.asset("assets/svg_icons/settings_icon.svg"),
                 label: 'Settings',
               ),
             ],
