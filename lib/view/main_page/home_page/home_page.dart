@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dog_app/bloc/dog_bloc_bloc.dart';
+import 'package:dog_app/core/extensions/context_extensions.dart';
+import 'package:dog_app/view/main_page/home_page/widgets/dog_card_widget.dart';
+import 'package:dog_app/view/shared/shimmer/shimmer_effect.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,7 +12,27 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: blocBody());
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: _buildAppBar(),
+      body: blocBody(),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    return AppBar(
+      elevation: 0,
+      backgroundColor: Colors.white,
+      title: const Text(
+        "Dog App",
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+      leading: const AutoLeadingButton(ignorePagelessRoutes: true),
+    );
   }
 
   Widget blocBody() {
@@ -18,69 +40,44 @@ class HomePage extends StatelessWidget {
       children: [
         BlocBuilder<DogBlocBloc, DogBlocState>(
           builder: (context, state) {
-            if (state is DogsRandomImageLoadedState) {
-              debugPrint("RESPONSE: ${state.breedsResponseModel.message!.hound![0]}");
-              return Column(
-                children: [
-                  Expanded(
-                    child: GridView.builder(
-                        itemCount: state.breedsResponseModel.message!.toMap().entries.length,
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                        ),
-                        itemBuilder: (_, index) {
-                          return Container(
-                              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                              child: Card(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                color: Colors.grey[300],
-                                child: Stack(
-                                  children: [
-                                    SizedBox(
-                                      height: double.infinity,
-                                      width: double.infinity,
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(8),
-                                        child: CachedNetworkImage(
-                                          imageUrl: state.randomDogImageResponseList[index],
-                                          fit: BoxFit.cover,
-                                          errorWidget: (context, url, error) {
-                                            return const Icon(Icons.error);
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                    Align(
-                                      alignment: Alignment.bottomLeft,
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                                        child: Text(
-                                          state.breedsResponseModel.message!.toMap().entries.toList()[index].key,
-                                          style: const TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ));
-                        }),
-                  ),
-                  const SizedBox(height: 80),
-                ],
-              );
+            if (state is AllRandomDogImageListLoadedState) {
+              return _buildDogListView(state, context);
+            }
+            if (state is DogsErrorState) {
+              return _buildErrorView(state);
             }
 
-            return const Center(child: CircularProgressIndicator.adaptive());
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Stack(
+                children: [
+                  GridView.builder(
+                      itemCount: 10,
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 1,
+                        mainAxisExtent: 163.5,
+                        crossAxisSpacing: 16,
+                        mainAxisSpacing: 16,
+                      ),
+                      itemBuilder: (_, index) {
+                        return ShimmerEffect(
+                          child: Container(
+                            height: 163.5,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: Colors.grey[200],
+                            ),
+                          ),
+                        );
+                      }),
+                  const SizedBox(height: 80),
+                ],
+              ),
+            );
           },
         ),
         // search by breeds name
-
         Align(
           alignment: Alignment.bottomCenter,
           child: Column(
@@ -111,6 +108,49 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  Center _buildErrorView(DogsErrorState state) {
+    return Center(
+      child: Column(
+        children: [
+          const Icon(
+            Icons.error,
+            color: Colors.red,
+            size: 48,
+          ),
+          const SizedBox(height: 12),
+          Text(state.error),
+        ],
+      ),
+    );
+  }
+
+  Padding _buildDogListView(AllRandomDogImageListLoadedState state, BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Stack(
+        children: [
+          GridView.builder(
+              itemCount: state.breedsResponseModel.breedsModel!.toMap().entries.length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 1,
+                mainAxisExtent: (context.width / 2) - 48, // 163.5,
+                crossAxisSpacing: 16,
+                mainAxisSpacing: 16,
+              ),
+              itemBuilder: (_, index) {
+                return DogCardWidget(
+                  breedName: state.breedsResponseModel.breedsModel!.toMap().entries.toList()[index].key,
+                  imageUrl: state.randomDogImageResponseList[index],
+                  subBreedList: state.breedsResponseModel.breedsModel!.toMap().entries.toList()[index].value,
+                );
+              }),
+          const SizedBox(height: 80),
+        ],
+      ),
     );
   }
 }

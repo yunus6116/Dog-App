@@ -5,6 +5,7 @@ import 'package:dog_app/core/theme/colors.dart';
 import 'package:dog_app/view/main_page/settings_page/settings_page.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 
 @RoutePage()
@@ -26,15 +27,6 @@ class MainPageState extends State<MainPage> {
       builder: (context, child) {
         return Scaffold(
           backgroundColor: Colors.white,
-          appBar: AppBar(
-            elevation: 0,
-            backgroundColor: Colors.white,
-            title: Text(
-              context.topRoute.title(context),
-              style: const TextStyle(color: Colors.black),
-            ),
-            leading: const AutoLeadingButton(ignorePagelessRoutes: true),
-          ),
           body: child,
           bottomNavigationBar: buildBottomNav(context, context.tabsRouter),
         );
@@ -50,6 +42,7 @@ class MainPageState extends State<MainPage> {
             currentIndex: tabsRouter.activeIndex,
             selectedItemColor: MainColors.mainLightColor,
             onTap: (int index) async {
+              HapticFeedback.mediumImpact();
               if (index == 0) {
                 tabsRouter.setActiveIndex(index);
               }
@@ -78,24 +71,5 @@ class MainPageState extends State<MainPage> {
               ),
             ],
           );
-  }
-}
-
-@RoutePage()
-class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          child: const Text('Dashboard'),
-          onPressed: () {
-            context.pushRoute(const MainRoute());
-          },
-        ),
-      ),
-    );
   }
 }

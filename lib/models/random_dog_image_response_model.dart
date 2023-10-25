@@ -1,17 +1,18 @@
+/// Model class for Random Dog Image Response
 class RandomDogImageResponseModel {
-  String? message;
+  String? imageUrl;
   String? status;
 
-  RandomDogImageResponseModel({this.message, this.status});
+  RandomDogImageResponseModel({this.imageUrl, this.status});
 
   RandomDogImageResponseModel.fromJson(Map<String, dynamic> json) {
-    message = json['message'];
+    imageUrl = json['message'];
     status = json['status'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['message'] = message;
+    data['message'] = imageUrl;
     data['status'] = status;
     return data;
   }

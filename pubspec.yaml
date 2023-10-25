@@ -24,8 +24,11 @@ dependencies:
 
   #core
   flutter_native_splash: ^2.3.4
-  flutter_svg: ^2.0.7
   cached_network_image: ^3.3.0
+  
+  #ui
+  shimmer: ^3.0.0
+  flutter_svg: ^2.0.7
 
 dev_dependencies:
   flutter_test:

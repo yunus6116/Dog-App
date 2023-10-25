@@ -19,7 +19,7 @@ class SettingsPage extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Container(
-            height: 4.0, // En üstteki çizgi (divider) yüksekliği
+            height: 4.0,
             width: 50.0,
             margin: const EdgeInsets.symmetric(vertical: 8.0),
             decoration: BoxDecoration(
@@ -29,20 +29,18 @@ class SettingsPage extends StatelessWidget {
           ),
           const SizedBox(height: 32),
           Expanded(
-            child: Padding(
-                padding: const EdgeInsets.only(left: 12.0),
-                child: ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: SettingsConstants.settingItems.length,
-                  itemBuilder: (context, index) {
-                    final item = SettingsConstants.settingItems[index];
-                    return SettingsListItem(
-                      index: index,
-                      item: item,
-                      version: version,
-                    );
-                  },
-                )),
+            child: ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: SettingsConstants.settingItems.length,
+              itemBuilder: (context, index) {
+                final item = SettingsConstants.settingItems[index];
+                return SettingsListItem(
+                  index: index,
+                  item: item,
+                  version: version,
+                );
+              },
+            ),
           ),
         ],
       ),
@@ -50,6 +48,7 @@ class SettingsPage extends StatelessWidget {
   }
 }
 
+/// SettingsListItem is a widget that is used to display the settings items.
 class SettingsListItem extends StatelessWidget {
   const SettingsListItem({
     super.key,
@@ -64,18 +63,34 @@ class SettingsListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ListTile(
-          leading: SvgPicture.asset(item.itemAssetPath),
-          title: Text(item.itemTitle),
-          trailing: index == SettingsConstants.settingItems.length - 1
-              ? Text("v${version ?? "1.0.0"}")
-              : SvgPicture.asset("assets/svg_icons/arrow_upright_icon.svg"),
-          // Diğer özelleştirmeler buraya eklenebilir
+        const SizedBox(height: 12),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Row(
+            children: [
+              SvgPicture.asset(item.itemAssetPath),
+              const SizedBox(width: 11),
+              Text(
+                item.itemTitle,
+                style: const TextStyle(
+                  fontSize: 16,
+                ),
+              ),
+              const Spacer(),
+              index == SettingsConstants.settingItems.length - 1
+                  ? Text("v${version ?? "1.0.0"}")
+                  : SvgPicture.asset("assets/svg_icons/arrow_upright_icon.svg"),
+            ],
+          ),
         ),
+        index != 5 ? const SizedBox(height: 12) : const SizedBox.shrink(),
         index != 5
-            ? const Divider(
-                height: 1,
-                thickness: 1,
+            ? const Padding(
+                padding: EdgeInsets.only(left: 16.0),
+                child: Divider(
+                  height: 1,
+                  thickness: 1,
+                ),
               )
             : const SizedBox.shrink(),
       ],

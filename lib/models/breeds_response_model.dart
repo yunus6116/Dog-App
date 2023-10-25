@@ -1,28 +1,29 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+/// Breeds Response Model
 class BreedsResponseModel {
-  Message? message;
+  BreedsModel? breedsModel;
   String? status;
 
-  BreedsResponseModel({this.message, this.status});
+  BreedsResponseModel({this.breedsModel, this.status});
 
   BreedsResponseModel.fromJson(Map<String, dynamic> json) {
-    message = json['message'] != null ? Message.fromMap(json['message']) : null;
+    breedsModel = json['message'] != null ? BreedsModel.fromMap(json['message']) : null;
     status = json['status'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    if (message != null) {
-      data['message'] = message!.toMap();
+    if (breedsModel != null) {
+      data['message'] = breedsModel!.toMap();
     }
     data['status'] = status;
     return data;
   }
 }
 
-class Message {
+/// Breeds Model
+class BreedsModel {
   List<String>? affenpinscher;
   List<String>? african;
   List<String>? airedale;
@@ -123,7 +124,7 @@ class Message {
   List<String>? whippet;
   List<String>? wolfhound;
 
-  Message(
+  BreedsModel(
       this.affenpinscher,
       this.african,
       this.airedale,
@@ -223,210 +224,6 @@ class Message {
       this.weimaraner,
       this.whippet,
       this.wolfhound);
-
-  Message copyWith({
-    List<String>? affenpinscher,
-    List<String>? african,
-    List<String>? airedale,
-    List<String>? akita,
-    List<String>? appenzeller,
-    List<String>? australian,
-    List<String>? basenji,
-    List<String>? beagle,
-    List<String>? bluetick,
-    List<String>? borzoi,
-    List<String>? bouvier,
-    List<String>? boxer,
-    List<String>? brabancon,
-    List<String>? briard,
-    List<String>? buhund,
-    List<String>? bulldog,
-    List<String>? bullterrier,
-    List<String>? cattledog,
-    List<String>? cavapoo,
-    List<String>? chihuahua,
-    List<String>? chow,
-    List<String>? clumber,
-    List<String>? cockapoo,
-    List<String>? collie,
-    List<String>? coonhound,
-    List<String>? corgi,
-    List<String>? cotondetulear,
-    List<String>? dachshund,
-    List<String>? dalmatian,
-    List<String>? dane,
-    List<String>? deerhound,
-    List<String>? dhole,
-    List<String>? dingo,
-    List<String>? doberman,
-    List<String>? elkhound,
-    List<String>? entlebucher,
-    List<String>? eskimo,
-    List<String>? finnish,
-    List<String>? frise,
-    List<String>? germanshepherd,
-    List<String>? greyhound,
-    List<String>? groenendael,
-    List<String>? havanese,
-    List<String>? hound,
-    List<String>? husky,
-    List<String>? keeshond,
-    List<String>? kelpie,
-    List<String>? komondor,
-    List<String>? kuvasz,
-    List<String>? labradoodle,
-    List<String>? labrador,
-    List<String>? leonberg,
-    List<String>? lhasa,
-    List<String>? malamute,
-    List<String>? malinois,
-    List<String>? maltese,
-    List<String>? mastiff,
-    List<String>? mexicanhairless,
-    List<String>? mix,
-    List<String>? mountain,
-    List<String>? newfoundland,
-    List<String>? otterhound,
-    List<String>? ovcharka,
-    List<String>? papillon,
-    List<String>? pekinese,
-    List<String>? pembroke,
-    List<String>? pinscher,
-    List<String>? pitbull,
-    List<String>? pointer,
-    List<String>? pomeranian,
-    List<String>? poodle,
-    List<String>? pug,
-    List<String>? puggle,
-    List<String>? pyrenees,
-    List<String>? redbone,
-    List<String>? retriever,
-    List<String>? ridgeback,
-    List<String>? rottweiler,
-    List<String>? saluki,
-    List<String>? samoyed,
-    List<String>? schipperke,
-    List<String>? schnauzer,
-    List<String>? segugio,
-    List<String>? setter,
-    List<String>? sharpei,
-    List<String>? sheepdog,
-    List<String>? shiba,
-    List<String>? shihtzu,
-    List<String>? spaniel,
-    List<String>? spitz,
-    List<String>? springer,
-    List<String>? stbernard,
-    List<String>? terrier,
-    List<String>? tervuren,
-    List<String>? vizsla,
-    List<String>? waterdog,
-    List<String>? weimaraner,
-    List<String>? whippet,
-    List<String>? wolfhound,
-  }) {
-    return Message(
-      affenpinscher ?? this.affenpinscher,
-      african ?? this.african,
-      airedale ?? this.airedale,
-      akita ?? this.akita,
-      appenzeller ?? this.appenzeller,
-      australian ?? this.australian,
-      basenji ?? this.basenji,
-      beagle ?? this.beagle,
-      bluetick ?? this.bluetick,
-      borzoi ?? this.borzoi,
-      bouvier ?? this.bouvier,
-      boxer ?? this.boxer,
-      brabancon ?? this.brabancon,
-      briard ?? this.briard,
-      buhund ?? this.buhund,
-      bulldog ?? this.bulldog,
-      bullterrier ?? this.bullterrier,
-      cattledog ?? this.cattledog,
-      cavapoo ?? this.cavapoo,
-      chihuahua ?? this.chihuahua,
-      chow ?? this.chow,
-      clumber ?? this.clumber,
-      cockapoo ?? this.cockapoo,
-      collie ?? this.collie,
-      coonhound ?? this.coonhound,
-      corgi ?? this.corgi,
-      cotondetulear ?? this.cotondetulear,
-      dachshund ?? this.dachshund,
-      dalmatian ?? this.dalmatian,
-      dane ?? this.dane,
-      deerhound ?? this.deerhound,
-      dhole ?? this.dhole,
-      dingo ?? this.dingo,
-      doberman ?? this.doberman,
-      elkhound ?? this.elkhound,
-      entlebucher ?? this.entlebucher,
-      eskimo ?? this.eskimo,
-      finnish ?? this.finnish,
-      frise ?? this.frise,
-      germanshepherd ?? this.germanshepherd,
-      greyhound ?? this.greyhound,
-      groenendael ?? this.groenendael,
-      havanese ?? this.havanese,
-      hound ?? this.hound,
-      husky ?? this.husky,
-      keeshond ?? this.keeshond,
-      kelpie ?? this.kelpie,
-      komondor ?? this.komondor,
-      kuvasz ?? this.kuvasz,
-      labradoodle ?? this.labradoodle,
-      labrador ?? this.labrador,
-      leonberg ?? this.leonberg,
-      lhasa ?? this.lhasa,
-      malamute ?? this.malamute,
-      malinois ?? this.malinois,
-      maltese ?? this.maltese,
-      mastiff ?? this.mastiff,
-      mexicanhairless ?? this.mexicanhairless,
-      mix ?? this.mix,
-      mountain ?? this.mountain,
-      newfoundland ?? this.newfoundland,
-      otterhound ?? this.otterhound,
-      ovcharka ?? this.ovcharka,
-      papillon ?? this.papillon,
-      pekinese ?? this.pekinese,
-      pembroke ?? this.pembroke,
-      pinscher ?? this.pinscher,
-      pitbull ?? this.pitbull,
-      pointer ?? this.pointer,
-      pomeranian ?? this.pomeranian,
-      poodle ?? this.poodle,
-      pug ?? this.pug,
-      puggle ?? this.puggle,
-      pyrenees ?? this.pyrenees,
-      redbone ?? this.redbone,
-      retriever ?? this.retriever,
-      ridgeback ?? this.ridgeback,
-      rottweiler ?? this.rottweiler,
-      saluki ?? this.saluki,
-      samoyed ?? this.samoyed,
-      schipperke ?? this.schipperke,
-      schnauzer ?? this.schnauzer,
-      segugio ?? this.segugio,
-      setter ?? this.setter,
-      sharpei ?? this.sharpei,
-      sheepdog ?? this.sheepdog,
-      shiba ?? this.shiba,
-      shihtzu ?? this.shihtzu,
-      spaniel ?? this.spaniel,
-      spitz ?? this.spitz,
-      springer ?? this.springer,
-      stbernard ?? this.stbernard,
-      terrier ?? this.terrier,
-      tervuren ?? this.tervuren,
-      vizsla ?? this.vizsla,
-      waterdog ?? this.waterdog,
-      weimaraner ?? this.weimaraner,
-      whippet ?? this.whippet,
-      wolfhound ?? this.wolfhound,
-    );
-  }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -532,8 +329,8 @@ class Message {
     };
   }
 
-  factory Message.fromMap(Map<String, dynamic> map) {
-    return Message(
+  factory BreedsModel.fromMap(Map<String, dynamic> map) {
+    return BreedsModel(
       map['affenpinscher'] != null ? List<String>.from(map['affenpinscher']) : null,
       map['african'] != null ? List<String>.from(map['african']) : null,
       map['airedale'] != null ? List<String>.from(map['airedale']) : null,
@@ -638,5 +435,5 @@ class Message {
 
   String toJson() => json.encode(toMap());
 
-  factory Message.fromJson(String source) => Message.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory BreedsModel.fromJson(String source) => BreedsModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }

@@ -1,5 +1,6 @@
 import 'package:dog_app/view/main_page/settings_page/models/setting_item_model.dart';
 
+/// SettingsConstants is a class that contains the constants of the settings page.
 class SettingsConstants {
   static List<SettingItemModel> settingItems = [
     SettingItemModel(

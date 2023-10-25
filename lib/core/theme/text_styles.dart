@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'colors.dart';
 
+/// Helper Class for App Text Styles
 class AppTextStyles {
   // button
   static TextStyle textButton3 = _getTextStyle(14, FontWeight.w600);
@@ -47,13 +48,6 @@ class AppTextStyles {
 
   static TextStyle body11 = _getTextStyle(15, FontWeight.w500);
 
-  // body6
-  static TextStyle categoryTitleTextStyle =
-      _getTextStyle(15, FontWeight.w500, color: MainColors.secondaryBlack);
-
-  static TextStyle categorySecondaryTextStyle =
-      _getTextStyle(15, FontWeight.w500, color: MainColors.tertiaryBlack);
-
   // heading
   static TextStyle heading = _getTextStyle(32, FontWeight.w700);
 
@@ -86,16 +80,11 @@ class AppTextStyles {
 
   static TextStyle _getTextStyle(double fontSize, FontWeight fontWeight,
           {double? height, Color color = MainColors.mainBlack}) =>
-      TextStyle(
-          fontSize: fontSize,
-          fontWeight: fontWeight,
-          height: height ?? 1.2,
-          color: color);
+      TextStyle(fontSize: fontSize, fontWeight: fontWeight, height: height ?? 1.2, color: color);
 
   static TextStyle _specialTextStyle(
     double fontSize,
     FontWeight fontWeight,
   ) =>
-      TextStyle(
-          fontSize: fontSize, fontWeight: fontWeight, color: Colors.white);
+      TextStyle(fontSize: fontSize, fontWeight: fontWeight, color: Colors.white);
 }

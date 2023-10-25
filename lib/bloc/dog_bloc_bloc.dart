@@ -7,10 +7,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'dog_bloc_event.dart';
 part 'dog_bloc_state.dart';
 
+/// DogBlocBloc is a [Bloc] that manages the state of [DogBlocState].
 class DogBlocBloc extends Bloc<DogBlocEvent, DogBlocState> {
   final DogRepositories _dogRepositories;
-  List<String> randomDogImageResponseList = [];
   DogBlocBloc(this._dogRepositories) : super(DogBlocInitial()) {
+    /// This event is used to get all dog breeds
     on<DogBlocEventGetDog>((event, emit) async {
       emit(DogsLoadingState());
       try {
@@ -21,24 +22,29 @@ class DogBlocBloc extends Bloc<DogBlocEvent, DogBlocState> {
       }
     });
 
-    on<DogBlocEventGetRandomDogImage>((event, emit) async {
+    /// This event is used to get random dog image for all dogs
+    on<DogBlocEventGetAllDogs>((event, emit) async {
       emit(DogsLoadingState());
       try {
-        debugPrint(event.breedsResponseModel.message!.hound![0]);
-        final List<Future<String>> futures = event.breedsResponseModel.message!.toMap().entries.map((entry) async {
+        debugPrint(event.breedsResponseModel.breedsModel!.hound![0]);
+        final List<Future<String>> futures = event.breedsResponseModel.breedsModel!.toMap().entries.map((entry) async {
           final breedName = entry.key;
           return _dogRepositories.getRandomDogImage(breedName);
         }).toList();
 
         final List<String> randomImages = await Future.wait(futures);
-        randomDogImageResponseList = randomImages;
-        emit(DogsRandomImageLoadedState(
+        emit(AllRandomDogImageListLoadedState(
           randomDogImageResponseList: randomImages,
           breedsResponseModel: event.breedsResponseModel,
         ));
       } catch (e) {
         emit(DogsErrorState(e.toString()));
       }
+    });
+
+    /// This event is used to change the state of [DogBlocState]
+    on<ChangeStateEvent>((event, emit) async {
+      emit(event.dogBlocState);
     });
   }
 }

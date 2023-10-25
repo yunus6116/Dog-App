@@ -49,12 +49,6 @@ abstract class $AppRouter extends _i5.RootStackRouter {
         child: const _i4.SplashScreen(),
       );
     },
-    WelcomeRoute.name: (routeData) {
-      return _i5.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i2.WelcomeScreen(),
-      );
-    },
   };
 }
 
@@ -134,20 +128,6 @@ class SplashRoute extends _i5.PageRouteInfo<void> {
         );
 
   static const String name = 'SplashRoute';
-
-  static const _i5.PageInfo<void> page = _i5.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i2.WelcomeScreen]
-class WelcomeRoute extends _i5.PageRouteInfo<void> {
-  const WelcomeRoute({List<_i5.PageRouteInfo>? children})
-      : super(
-          WelcomeRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'WelcomeRoute';
 
   static const _i5.PageInfo<void> page = _i5.PageInfo<void>(name);
 }
