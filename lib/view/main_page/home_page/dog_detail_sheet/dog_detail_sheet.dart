@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dog_app/core/extensions/string_extensions.dart';
 import 'package:dog_app/core/helper/cache_image_helper.dart';
 import 'package:dog_app/core/theme/colors.dart';
 import 'package:dog_app/view/main_page/home_page/dog_detail_sheet/bloc/random_dog_bloc.dart';
@@ -128,7 +129,7 @@ class DogDetailSheet extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         Text(
-          breedName,
+          breedName.capitalizeFirstLetter(),
           style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w500,
@@ -163,7 +164,7 @@ class DogDetailSheet extends StatelessWidget {
                         alignment: Alignment.center,
                         margin: const EdgeInsets.only(bottom: 6),
                         child: Text(
-                          subBreedList![index],
+                          subBreedList![index].capitalizeFirstLetter(),
                           style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,

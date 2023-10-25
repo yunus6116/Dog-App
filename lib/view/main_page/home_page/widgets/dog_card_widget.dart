@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dog_app/core/extensions/string_extensions.dart';
 import 'package:dog_app/view/main_page/home_page/dog_detail_sheet/dog_detail_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -84,7 +85,7 @@ class DogCardWidget extends StatelessWidget {
             Align(
               alignment: Alignment.bottomLeft,
               child: Text(
-                breedName,
+                breedName.capitalizeFirstLetter(),
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 16,
