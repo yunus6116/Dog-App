@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:dog_app/bloc/dog_bloc_bloc.dart';
+import 'package:dog_app/bloc/dog_bloc/dog_bloc_bloc.dart';
 import 'package:dog_app/core/helper/cache_image_helper.dart';
 import 'package:dog_app/core/router/app_router.gr.dart';
 import 'package:flutter/material.dart';
@@ -45,12 +45,10 @@ class _SplashScreenState extends State<SplashScreen> {
                   }).toList(),
                   context: context)
               .then((value) {
-            debugPrint("CACHED");
             context.router.pushAndPopUntil(const MainRoute(), predicate: (_) => false);
           });
         }
         if (state is DogsErrorState) {
-          debugPrint("RESPONSE: ${state.error}");
           // Show error snackbar
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(

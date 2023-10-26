@@ -27,7 +27,6 @@ class DogBlocBloc extends Bloc<DogBlocEvent, DogBlocState> {
     on<DogBlocEventGetAllDogs>((event, emit) async {
       emit(DogsLoadingState());
       try {
-        debugPrint(event.breedsResponseModel.breedsModel!.hound![0]);
         final List<Future<String>> futures = event.breedsResponseModel.breedsModel!.toMap().entries.map((entry) async {
           final breedName = entry.key;
           return _dogRepositories.getRandomDogImage(breedName);

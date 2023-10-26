@@ -44,7 +44,6 @@ class DogDetailSheet extends StatelessWidget {
       listener: (context, state) {
         if (state is RandomDogLoadedState) {
           CacheImageHelper.cacheImages(context: context, imageUrls: [state.dogImage]).then((value) {
-            debugPrint("CACHED");
             showModalBottomSheet(
               isScrollControlled: true,
               context: context,

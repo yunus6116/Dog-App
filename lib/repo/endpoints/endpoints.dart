@@ -1,4 +1,4 @@
-/// Endpoints for the API
+/// Endpoints with base url for the API
 enum Endpoints {
   baseEndpoint("https://dog.ceo/api"),
   getDogBreedsListEndpoint("https://dog.ceo/api/breeds/list/all");
