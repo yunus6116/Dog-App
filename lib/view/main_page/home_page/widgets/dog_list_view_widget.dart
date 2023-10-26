@@ -141,7 +141,7 @@ class DogListViewWidget extends HookWidget {
                       cursorColor: MainColors.mainLightColor,
                       cursorWidth: 2,
                       cursorHeight: 19,
-                      maxLines: 3,
+                      maxLines: isExpanded.value ? null : 3,
                       decoration: const InputDecoration(
                         fillColor: Colors.black,
                         hintText: "Search",

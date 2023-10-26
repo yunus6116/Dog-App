@@ -1,8 +1,8 @@
 import 'package:dog_app/bloc/dog_bloc/dog_bloc_bloc.dart';
+import 'package:dog_app/bloc/random_dog_bloc/random_dog_bloc.dart';
 import 'package:dog_app/bloc/search_bloc/search_bloc_bloc.dart';
 import 'package:dog_app/core/router/app_router.dart';
 import 'package:dog_app/repo/dog_repositories.dart';
-import 'package:dog_app/view/main_page/home_page/dog_detail_sheet/bloc/random_dog_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';

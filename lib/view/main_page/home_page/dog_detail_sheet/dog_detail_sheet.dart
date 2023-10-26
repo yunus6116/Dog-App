@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dog_app/bloc/random_dog_bloc/random_dog_bloc.dart';
 import 'package:dog_app/core/extensions/string_extensions.dart';
 import 'package:dog_app/core/helper/cache_image_helper.dart';
 import 'package:dog_app/core/theme/colors.dart';
-import 'package:dog_app/view/main_page/home_page/dog_detail_sheet/bloc/random_dog_bloc.dart';
 import 'package:dog_app/view/shared/widgets/generated_dog_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
