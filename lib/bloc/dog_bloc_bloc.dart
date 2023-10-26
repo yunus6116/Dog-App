@@ -1,5 +1,6 @@
 import 'package:dog_app/models/breeds_response_model.dart';
 import 'package:dog_app/repo/dog_repositories.dart';
+import 'package:dog_app/view/main_page/home_page/models/dog_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,9 +34,21 @@ class DogBlocBloc extends Bloc<DogBlocEvent, DogBlocState> {
         }).toList();
 
         final List<String> randomImages = await Future.wait(futures);
+        List<DogModel> dogList = [];
+        for (var element in randomImages) {
+          dogList.add(DogModel(
+            imageUrl: element,
+          ));
+        }
+        for (var i = 0; i < event.breedsResponseModel.breedsModel!.toMap().entries.toList().length; i++) {
+          for (var j = 0; j < dogList.length; j++) {
+            dogList[i] =
+                dogList[i].copyWith(name: event.breedsResponseModel.breedsModel!.toMap().entries.toList()[i].key);
+          }
+        }
         emit(AllRandomDogImageListLoadedState(
-          randomDogImageResponseList: randomImages,
-          breedsResponseModel: event.breedsResponseModel,
+          dogList: dogList,
+          breedsModel: event.breedsResponseModel.breedsModel!,
         ));
       } catch (e) {
         emit(DogsErrorState(e.toString()));

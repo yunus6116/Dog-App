@@ -1,10 +1,11 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:auto_route/auto_route.dart';
-import 'package:dog_app/bloc/dog_bloc_bloc.dart';
-import 'package:dog_app/core/extensions/context_extensions.dart';
-import 'package:dog_app/view/main_page/home_page/widgets/dog_card_widget.dart';
-import 'package:dog_app/view/shared/shimmer/shimmer_effect.dart';
+import 'package:dog_app/view/main_page/home_page/widgets/dog_list_view_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:dog_app/bloc/dog_bloc_bloc.dart';
+import 'package:dog_app/view/shared/shimmer/shimmer_effect.dart';
 
 @RoutePage()
 class HomePage extends StatelessWidget {
@@ -41,7 +42,10 @@ class HomePage extends StatelessWidget {
         BlocBuilder<DogBlocBloc, DogBlocState>(
           builder: (context, state) {
             if (state is AllRandomDogImageListLoadedState) {
-              return _buildDogListView(state, context);
+              return DogListViewWidget(
+                dogList: state.dogList,
+                breedsModel: state.breedsModel,
+              );
             }
             if (state is DogsErrorState) {
               return _buildErrorView(state);
@@ -122,33 +126,6 @@ class HomePage extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           Text(state.error),
-        ],
-      ),
-    );
-  }
-
-  Padding _buildDogListView(AllRandomDogImageListLoadedState state, BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Stack(
-        children: [
-          GridView.builder(
-              itemCount: state.breedsResponseModel.breedsModel!.toMap().entries.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 1,
-                mainAxisExtent: (context.width / 2) - 48, // 163.5,
-                crossAxisSpacing: 16,
-                mainAxisSpacing: 16,
-              ),
-              itemBuilder: (_, index) {
-                return DogCardWidget(
-                  breedName: state.breedsResponseModel.breedsModel!.toMap().entries.toList()[index].key,
-                  imageUrl: state.randomDogImageResponseList[index],
-                  subBreedList: state.breedsResponseModel.breedsModel!.toMap().entries.toList()[index].value,
-                );
-              }),
-          const SizedBox(height: 80),
         ],
       ),
     );

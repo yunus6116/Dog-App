@@ -1,20 +1,19 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dog_app/core/extensions/string_extensions.dart';
 import 'package:dog_app/view/main_page/home_page/dog_detail_sheet/dog_detail_sheet.dart';
+import 'package:dog_app/view/main_page/home_page/models/dog_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class DogCardWidget extends StatelessWidget {
   const DogCardWidget({
     Key? key,
-    required this.imageUrl,
-    required this.breedName,
     required this.subBreedList,
+    required this.dogModel,
   }) : super(key: key);
 
-  final String imageUrl;
-  final String breedName;
   final List<String>? subBreedList;
+  final DogModel dogModel;
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +28,8 @@ class DogCardWidget extends StatelessWidget {
           enableDrag: false,
           builder: (BuildContext context) {
             return DogDetailSheet(
-              breedName: breedName,
-              imageUrl: imageUrl,
+              breedName: dogModel.name!,
+              imageUrl: dogModel.imageUrl ?? "",
               subBreedList: subBreedList,
             );
           },
@@ -49,7 +48,7 @@ class DogCardWidget extends StatelessWidget {
                 height: double.infinity,
                 width: double.infinity,
                 child: CachedNetworkImage(
-                  imageUrl: imageUrl,
+                  imageUrl: dogModel.imageUrl ?? "",
                   fit: BoxFit.cover,
                   errorWidget: (context, url, error) {
                     return const Icon(Icons.error);
@@ -85,7 +84,7 @@ class DogCardWidget extends StatelessWidget {
             Align(
               alignment: Alignment.bottomLeft,
               child: Text(
-                breedName.capitalizeFirstLetter(),
+                dogModel.name!.capitalizeFirstLetter(),
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 16,

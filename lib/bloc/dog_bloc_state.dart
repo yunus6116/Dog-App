@@ -34,9 +34,9 @@ class DogsErrorState extends DogBlocState {
 
 /// This state is used to show random image loaded state of [DogBlocBloc]
 class AllRandomDogImageListLoadedState extends DogBlocState {
-  final List<String> randomDogImageResponseList;
-  final BreedsResponseModel breedsResponseModel;
-  AllRandomDogImageListLoadedState({required this.randomDogImageResponseList, required this.breedsResponseModel});
+  final List<DogModel> dogList;
+  final BreedsModel breedsModel;
+  AllRandomDogImageListLoadedState({required this.dogList, required this.breedsModel});
   @override
-  List<Object?> get props => [randomDogImageResponseList];
+  List<Object?> get props => [dogList, breedsModel];
 }

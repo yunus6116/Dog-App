@@ -39,7 +39,12 @@ class _SplashScreenState extends State<SplashScreen> {
           context.read<DogBlocBloc>().add(DogBlocEventGetAllDogs(state.breedsResponseModel));
         }
         if (state is AllRandomDogImageListLoadedState) {
-          CacheImageHelper.cacheImages(imageUrls: state.randomDogImageResponseList, context: context).then((value) {
+          CacheImageHelper.cacheImages(
+                  imageUrls: state.dogList.map((e) {
+                    return e.imageUrl!;
+                  }).toList(),
+                  context: context)
+              .then((value) {
             debugPrint("CACHED");
             context.router.pushAndPopUntil(const MainRoute(), predicate: (_) => false);
           });
