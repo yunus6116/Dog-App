@@ -39,6 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
           context.read<DogBlocBloc>().add(DogBlocEventGetAllDogs(state.breedsResponseModel));
         }
         if (state is AllRandomDogImageListLoadedState) {
+          //TODO: When caching images, some image urls return 404 because they are not valid. There are ways to solve this situation, but for now it's like this
           CacheImageHelper.cacheImages(
                   imageUrls: state.dogList.map((e) {
                     return e.imageUrl!;
