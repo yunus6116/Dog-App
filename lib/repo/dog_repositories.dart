@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:dog_app/models/breeds_response_model.dart';
-import 'package:dog_app/models/random_dog_image_response_model.dart';
-import 'package:dog_app/repo/endpoints/endpoints.dart';
+import '../models/breeds_response_model.dart';
+import '../models/random_dog_image_response_model.dart';
+import 'endpoints/endpoints.dart';
 import 'package:http/http.dart';
 
 /// DogRepositories is a class that manages the api calls of the dog app.

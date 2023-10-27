@@ -1,4 +1,4 @@
-import 'package:dog_app/view/main_page/home_page/models/dog_model.dart';
+import '../../view/main_page/home_page/models/dog_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

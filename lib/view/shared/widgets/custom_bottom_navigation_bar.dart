@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:dog_app/core/plugins/system_info.dart';
-import 'package:dog_app/core/theme/colors.dart';
-import 'package:dog_app/core/theme/text_styles.dart';
-import 'package:dog_app/view/main_page/settings_page/settings_page.dart';
+import '../../../core/plugins/system_info.dart';
+import '../../../core/theme/colors.dart';
+import '../../../core/theme/text_styles.dart';
+import '../../main_page/settings_page/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';

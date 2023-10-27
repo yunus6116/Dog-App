@@ -1,14 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dog_app/bloc/random_dog_bloc/random_dog_bloc.dart';
-import 'package:dog_app/core/extensions/string_extensions.dart';
-import 'package:dog_app/core/helper/cache_image_helper.dart';
-import 'package:dog_app/core/theme/colors.dart';
-import 'package:dog_app/view/shared/widgets/generated_dog_sheet.dart';
-import 'package:flutter/cupertino.dart';
+import '../../../../bloc/random_dog_bloc/random_dog_bloc.dart';
+import '../../../../core/extensions/string_extensions.dart';
+import '../../../../core/helper/cache_image_helper.dart';
+import '../../../../core/theme/colors.dart';
+import '../../../shared/widgets/generated_dog_sheet.dart';
 import 'package:flutter/material.dart';
 
-import 'package:dog_app/core/extensions/context_extensions.dart';
+import '../../../../core/extensions/context_extensions.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -122,8 +121,8 @@ class DogDetailSheet extends StatelessWidget {
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 32.0),
           child: Divider(
-            color: CupertinoColors.systemGrey,
-            height: 2,
+            color: Color(0xFFF2F2F7),
+            thickness: 2,
           ),
         ),
         const SizedBox(height: 8),
@@ -149,8 +148,8 @@ class DogDetailSheet extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 32.0),
               child: Divider(
-                color: CupertinoColors.systemGrey,
-                height: 2,
+                color: Color(0xFFF2F2F7),
+                thickness: 2,
               ),
             ),
             const SizedBox(height: 8),

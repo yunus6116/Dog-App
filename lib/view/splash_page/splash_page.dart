@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:dog_app/bloc/dog_bloc/dog_bloc_bloc.dart';
-import 'package:dog_app/core/helper/cache_image_helper.dart';
-import 'package:dog_app/core/router/app_router.gr.dart';
+import '../../bloc/dog_bloc/dog_bloc_bloc.dart';
+import '../../core/helper/cache_image_helper.dart';
+import '../../core/router/app_router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';

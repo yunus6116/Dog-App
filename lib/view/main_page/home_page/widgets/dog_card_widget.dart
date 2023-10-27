@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dog_app/core/extensions/string_extensions.dart';
-import 'package:dog_app/view/main_page/home_page/dog_detail_sheet/dog_detail_sheet.dart';
-import 'package:dog_app/view/main_page/home_page/models/dog_model.dart';
+import '../../../../core/extensions/string_extensions.dart';
+import '../dog_detail_sheet/dog_detail_sheet.dart';
+import '../models/dog_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

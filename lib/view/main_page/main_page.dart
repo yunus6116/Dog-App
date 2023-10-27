@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:dog_app/core/router/app_router.gr.dart';
-import 'package:dog_app/view/shared/widgets/custom_bottom_navigation_bar.dart';
+import '../../core/router/app_router.gr.dart';
+import '../shared/widgets/custom_bottom_navigation_bar.dart';
 
 import 'package:flutter/material.dart';
 

@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:dog_app/core/theme/text_styles.dart';
-import 'package:dog_app/view/main_page/settings_page/constants/settings_constants.dart';
-import 'package:dog_app/view/main_page/settings_page/models/setting_item_model.dart';
+import '../../../core/theme/text_styles.dart';
+import 'constants/settings_constants.dart';
+import 'models/setting_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -70,7 +70,7 @@ class SettingsListItem extends StatelessWidget {
           child: Row(
             children: [
               SvgPicture.asset(item.itemAssetPath),
-              const SizedBox(width: 11),
+              const SizedBox(width: 8),
               Text(
                 item.itemTitle,
                 style: AppTextStyles.body1,
@@ -85,13 +85,14 @@ class SettingsListItem extends StatelessWidget {
             ],
           ),
         ),
-        index != 5 ? const SizedBox(height: 12) : const SizedBox.shrink(),
-        index != 5
+        index != SettingsConstants.settingItems.length - 1 ? const SizedBox(height: 12) : const SizedBox.shrink(),
+        index != SettingsConstants.settingItems.length - 1
             ? const Padding(
                 padding: EdgeInsets.only(left: 16.0),
                 child: Divider(
+                  color: Color(0xFFE5E5EA),
                   height: 1,
-                  thickness: 1,
+                  thickness: 2,
                 ),
               )
             : const SizedBox.shrink(),

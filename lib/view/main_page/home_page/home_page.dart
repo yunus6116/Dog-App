@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:dog_app/bloc/dog_bloc/dog_bloc_bloc.dart';
-import 'package:dog_app/view/main_page/home_page/widgets/dog_list_view_widget.dart';
+import '../../../bloc/dog_bloc/dog_bloc_bloc.dart';
+import 'widgets/dog_list_view_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:dog_app/view/shared/shimmer/shimmer_effect.dart';
+import '../../shared/shimmer/shimmer_effect.dart';
 
 @RoutePage()
 class HomePage extends StatelessWidget {

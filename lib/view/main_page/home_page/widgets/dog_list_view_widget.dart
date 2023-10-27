@@ -1,10 +1,10 @@
-import 'package:dog_app/bloc/search_bloc/search_bloc_bloc.dart';
-import 'package:dog_app/core/extensions/context_extensions.dart';
-import 'package:dog_app/core/theme/colors.dart';
-import 'package:dog_app/core/theme/text_styles.dart';
-import 'package:dog_app/models/breeds_response_model.dart';
-import 'package:dog_app/view/main_page/home_page/models/dog_model.dart';
-import 'package:dog_app/view/main_page/home_page/widgets/dog_card_widget.dart';
+import '../../../../bloc/search_bloc/search_bloc_bloc.dart';
+import '../../../../core/extensions/context_extensions.dart';
+import '../../../../core/theme/colors.dart';
+import '../../../../core/theme/text_styles.dart';
+import '../../../../models/breeds_response_model.dart';
+import '../models/dog_model.dart';
+import 'dog_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
