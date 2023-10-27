@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:dog_app/core/theme/text_styles.dart';
 import 'package:dog_app/view/main_page/settings_page/constants/settings_constants.dart';
 import 'package:dog_app/view/main_page/settings_page/models/setting_item_model.dart';
 import 'package:flutter/material.dart';
@@ -72,13 +73,14 @@ class SettingsListItem extends StatelessWidget {
               const SizedBox(width: 11),
               Text(
                 item.itemTitle,
-                style: const TextStyle(
-                  fontSize: 16,
-                ),
+                style: AppTextStyles.body1,
               ),
               const Spacer(),
               index == SettingsConstants.settingItems.length - 1
-                  ? Text("v${version ?? "1.0.0"}")
+                  ? Text(
+                      "v${version ?? "1.0.0"}",
+                      style: AppTextStyles.body13.copyWith(color: const Color(0xFF3C3C43).withOpacity(.6)),
+                    )
                   : SvgPicture.asset("assets/svg_icons/arrow_upright_icon.svg"),
             ],
           ),

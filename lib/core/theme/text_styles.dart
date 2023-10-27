@@ -53,6 +53,9 @@ class AppTextStyles {
   // body12
   static TextStyle body12 = _getTextStyle(11, FontWeight.w600);
 
+  // body13
+  static TextStyle body13 = _getTextStyle(13, FontWeight.w500);
+
   // heading
   static TextStyle heading = _getTextStyle(32, FontWeight.w700);
 

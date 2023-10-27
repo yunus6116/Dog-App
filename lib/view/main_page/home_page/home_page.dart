@@ -23,6 +23,7 @@ class HomePage extends StatelessWidget {
     return AppBar(
       elevation: 0,
       backgroundColor: Colors.white,
+      centerTitle: true,
       title: const Text(
         "Dog App",
         style: TextStyle(
